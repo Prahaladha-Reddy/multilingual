@@ -25,7 +25,7 @@ app = FastAPI(
 )
 
 
-@app.post("/ask", response_model=AnswerResponse)
+@app.post("/ask_questions", response_model=AnswerResponse)
 async def ask_question(request: QuestionRequest):
     try:
         retrieved_docs = pipeline.run({"query":request.question})
@@ -43,7 +43,7 @@ async def ask_question(request: QuestionRequest):
 
 
 
-@app.post("/ask", response_model=AnswerResponse)
+@app.post("/ask_events", response_model=AnswerResponse)
 async def ask_events(request: QuestionRequest):
     try:
         retrieved_docs = ask_event_manager(query=request.question)
