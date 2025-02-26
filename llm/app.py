@@ -50,7 +50,7 @@ async def ask_events(request: QuestionRequest):
 
         return AnswerResponse(
             question=request.question,
-            answer=retrieved_docs['content'],
+            answer=retrieved_docs.content,
         )
         
     except Exception as e:
