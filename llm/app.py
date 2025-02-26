@@ -18,12 +18,21 @@ pipeline = SequentialChain(
 )
 
 
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI(
     title="RAG API",
     description="API for Retrieval-Augmented Generation",
     version="1.0.0"
 )
 
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins (you can restrict this to specific domains)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
 @app.post("/ask_questions", response_model=AnswerResponse)
 async def ask_question(request: QuestionRequest):
